@@ -1,6 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import Login from './pages/Login';
+import Wallet from './pages/Wallet';
 
 function App() {
   return (
@@ -8,10 +10,11 @@ function App() {
 
       <Switch>
         <Route exact path="/" component={ Login } />
+        <Route path="/carteira" component={ Wallet } />
       </Switch>
 
     </div>
   );
 }
 
-export default App;
+export default connect(null)(App);

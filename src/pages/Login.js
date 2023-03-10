@@ -28,15 +28,9 @@ class Login extends React.Component {
     const minNumber = 5;
     const passwordValidation = password.length > minNumber;
 
-    if (emailValidation && passwordValidation) {
-      this.setState({
-        buttonLogin: false,
-      });
-    } else {
-      this.setState({
-        buttonLogin: true,
-      });
-    }
+    this.setState({
+      buttonLogin: !(emailValidation && passwordValidation),
+    });
   };
 
   render() {
@@ -59,6 +53,7 @@ class Login extends React.Component {
               id="email"
               type="text"
               name="email"
+              placeholder="E-mail"
               value={ email }
               onChange={ this.handleChange }
             />
@@ -69,8 +64,9 @@ class Login extends React.Component {
             <input
               data-testid="password-input"
               id="password"
-              type="text"
+              type="password"
               name="password"
+              placeholder="Senha"
               value={ password }
               onChange={ this.handleChange }
             />
