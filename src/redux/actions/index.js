@@ -35,7 +35,7 @@ export function fetchApiCurrencies() {
   };
 }
 
-// requisito 4
+// requisito 4 - construída com auxílio de colegas Aline e Raphael (explicaram a lógica)
 
 export const expensesAction = (expense) => ({
 
