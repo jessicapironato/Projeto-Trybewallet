@@ -1,6 +1,7 @@
 export const EMAIL_ACTION = 'EMAIL_ACTION';
 export const CURRENCY_ACTION = 'CURRENCY_ACTION';
 export const REQUEST_API = 'REQUEST_API';
+export const EXPENSE_ACTION = 'EXPENSE_ACTION';
 
 export const emailAction = (payload) => ({
   type: EMAIL_ACTION,
@@ -31,5 +32,27 @@ export function fetchApiCurrencies() {
     const location = await fetchAPI();
     const currencies = Object.keys(location).filter((currency) => currency !== 'USDT');
     dispatch(currencyAction(currencies));
+  };
+}
+
+// requisito 4
+
+export const expensesAction = (expense) => ({
+
+  type: EXPENSE_ACTION,
+  payload: expense,
+
+});
+
+export function exchangeCatch(expense) {
+  return async (dispatch) => {
+    dispatch(requestAPI());
+
+    const location = await fetchAPI();
+    const objectExchange = {
+      ...expense,
+      exchangeRates: location,
+    };
+    dispatch(expensesAction(objectExchange));
   };
 }

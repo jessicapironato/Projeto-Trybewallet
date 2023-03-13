@@ -11,7 +11,7 @@ class Table extends Component {
   render() {
     return (
       <table>
-        <caption>Alien football stars</caption>
+
         <tr>
           <th scope="col">Descrição</th>
           <th scope="col">Tag</th>

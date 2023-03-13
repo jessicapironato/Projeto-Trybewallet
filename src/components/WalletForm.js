@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { fetchApiCurrencies } from '../redux/actions';
+import { fetchApiCurrencies, exchangeCatch } from '../redux/actions';
 
 class WalletForm extends Component {
   constructor() {
     super();
     this.state = {
-      expense: 0,
+      id: 0,
+      value: 0,
       description: '',
       currency: 'BRL',
       method: 'Dinheiro',
@@ -29,8 +30,17 @@ class WalletForm extends Component {
     });
   };
 
+  handleClick = () => {
+    const { dispatch } = this.props;
+    dispatch(exchangeCatch(this.state));
+
+    this.setState((prevState) => ({
+      id: prevState.id + 1,
+    }));
+  };
+
   render() {
-    const { expense, description, currency, method, tagCategory } = this.state;
+    const { value, description, currency, method, tagCategory } = this.state;
     const { currencies } = this.props;
 
     return (
@@ -38,14 +48,14 @@ class WalletForm extends Component {
       <div>
         <form>
 
-          <label htmlFor="expenses">
-            Despesas
+          <label htmlFor="value">
+            Valor
             <input
               data-testid="value-input"
-              id="expense"
+              id="value"
               type="number"
-              name="expense"
-              value={ expense }
+              name="value"
+              value={ value }
               onChange={ this.handleChange }
             />
           </label>
@@ -112,8 +122,14 @@ class WalletForm extends Component {
 
             </select>
           </label>
-
         </form>
+
+        <button
+          type="button"
+          onClick={ this.handleClick }
+        >
+          Adicionar despesa
+        </button>
 
       </div>
 
