@@ -2,6 +2,7 @@ export const EMAIL_ACTION = 'EMAIL_ACTION';
 export const CURRENCY_ACTION = 'CURRENCY_ACTION';
 export const REQUEST_API = 'REQUEST_API';
 export const EXPENSE_ACTION = 'EXPENSE_ACTION';
+export const EXPENSE_REMOVE_ACTION = 'EXPENSE_REMOVE_ACTION';
 
 export const emailAction = (payload) => ({
   type: EMAIL_ACTION,
@@ -56,3 +57,10 @@ export function exchangeCatch(expense) {
     dispatch(expensesAction(objectExchange));
   };
 }
+
+// REQUISITO 8
+
+export const expenseRemoveAction = (id) => ({
+  type: EXPENSE_REMOVE_ACTION,
+  payload: { id },
+});
